@@ -110,7 +110,7 @@
 
     <!-- CHAT CONTAINER -->
     <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 max-w-5xl w-full mx-auto relative z-10 select-text">
-        <!-- Tin nhắn chào mặc định -->
+        <!-- Tin nhắn chào mặc định theo yêu cầu -->
         <div class="flex gap-3 max-w-3xl">
             <div class="w-8 h-8 rounded bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-orbitron font-bold text-xs shrink-0 shadow-lg shadow-cyan-500/20 border border-cyan-400/40">
                 NK
@@ -118,9 +118,7 @@
             <div class="bg-slate-900/90 border border-cyan-500/30 p-4 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan shadow-xl backdrop-blur-sm">
                 <p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p>
                 <div class="markdown-body text-sm leading-relaxed">
-                    Xin chào! Tôi là **Nam Khanh Baka** - Trợ lý trí tuệ nhân tạo công nghệ cao. 
-                    <br><br>
-                    Tôi có thể giúp bạn giải đáp thắc mắc, viết mã nguồn (code), phân tích hình ảnh và tài liệu. Hãy tải ảnh/tệp lên hoặc nhập câu hỏi bên dưới để bắt đầu!
+                    Trợ lý ảo do Nam Khánh siu dz tạo ra, tôi có thể giúp gì cho bạn?
                 </div>
             </div>
         </div>
@@ -171,10 +169,6 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </button>
         </form>
-        <div class="max-w-5xl mx-auto mt-2 flex justify-between items-center text-[10px] font-mono text-slate-500 px-1">
-            <span>SYSTEM: READY</span>
-            <span>MODEL: GEMINI-3.8-FLASH</span>
-        </div>
     </footer>
 
     <!-- MODAL NHẬP HOẶC ĐỔI API KEY -->
@@ -205,11 +199,11 @@
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Tên mô hình chính thức cập nhật mới nhất từ Google AI Studio
-        const MODEL_NAME = "gemini-3.8-flash"; 
+        // Sử dụng gemini-1.5-flash để đảm bảo ổn định và không bị quá tải
+        const MODEL_NAME = "gemini-1.5-flash"; 
         
-        // Key mặc định (được tự động lưu vào bộ nhớ trình duyệt)
-        const INITIAL_KEY = "AQ.Ab8RN6KmdmylGAiFwaTBsG2U_tJ9vNHw90C9a75RMg0dUSCI7w";
+        // Tích hợp sẵn API Key của bạn
+        const INITIAL_KEY = "AQ.Ab8RN6Igq1MbrovVrqLvgHPyByhsxQ1HoSAci8oXXyQevKe8Iw";
         let apiKey = localStorage.getItem("NK_BAKA_API_KEY") || INITIAL_KEY;
         if (!localStorage.getItem("NK_BAKA_API_KEY")) {
             localStorage.setItem("NK_BAKA_API_KEY", INITIAL_KEY);
@@ -224,7 +218,6 @@
         const sendBtn = document.getElementById("send-btn");
         const fileInput = document.getElementById("file-input");
 
-        // Tự co giãn ô nhập văn bản
         userInput.addEventListener("input", function() {
             this.style.height = "auto";
             this.style.height = (this.scrollHeight) + "px";
@@ -237,7 +230,6 @@
             }
         });
 
-        // Xử lý đọc File đính kèm
         fileInput.addEventListener("change", async function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -295,7 +287,6 @@
             document.getElementById("attachment-preview").classList.add("hidden");
         }
 
-        // Xử lý sự kiện gửi tin nhắn
         chatForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const textPrompt = userInput.value.trim();
