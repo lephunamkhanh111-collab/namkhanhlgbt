@@ -2,7 +2,8 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Khóa phóng to/thu nhỏ trên điện thoại -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ngun Biết Tuốt - AI Workspace 💕</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,6 +16,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
     <style>
+        /* Khóa toàn bộ màn hình không cho nảy hoặc dịch chuyển web trên di động */
+        html, body {
+            width: 100%;
+            height: 100%;
+            height: 100dvh; /* Chiều cao chuẩn trên trình duyệt điện thoại */
+            overflow: hidden;
+            position: fixed;
+            touch-action: manipulation;
+            overscroll-behavior: none;
+        }
+
         body {
             font-family: 'Quicksand', sans-serif;
             background-color: #fff0f5;
@@ -42,6 +54,12 @@
                 radial-gradient(circle, rgba(255, 182, 193, 0.3) 1.5px, transparent 1.5px);
         }
 
+        /* Cho phép cuộn nội dung tin nhắn mượt trên iOS/Android */
+        #chat-container {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
+        }
+
         /* Định dạng nội dung Markdown */
         .markdown-body p { margin-bottom: 0.75rem; }
         .markdown-body pre { background: #fffaf0 !important; padding: 1rem; border-radius: 0.75rem; border: 2px dashed #ffb6c1; margin: 0.75rem 0; overflow-x: auto; }
@@ -54,7 +72,7 @@
         .markdown-body th { background-color: #ffe4e1; color: #d81b60; }
     </style>
 </head>
-<body class="bg-grid-cute h-screen flex flex-col overflow-hidden select-none">
+<body class="bg-grid-cute h-full w-full flex flex-col select-none">
     
     <!-- MODAL NHẬP API KEY (BẮT BUỘC KHI VÀO) -->
     <div id="api-modal" class="fixed inset-0 bg-pink-100/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
