@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nam Khanh Baka - Neural Matrix AI Workspace</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Orbitron & Rajdhani & Fira Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Marked.js cho Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Highlight.js cho Code Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #030509;
+            color: #d1d5db;
+        }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-mono-code { font-family: 'Fira Code', monospace; }
+        
+        /* Hiệu ứng Neon Cyberpunk Glow */
+        .neon-border-cyan {
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3), inset 0 0 10px rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.5);
+        }
+        .neon-border-pink {
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3), inset 0 0 10px rgba(236, 72, 153, 0.1);
+            border: 1px solid rgba(236, 72, 153, 0.5);
+        }
+        
+        /* Thanh cuộn Cyberpunk */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #070a13; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; border: 1px solid #06b6d4; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+        /* Background Grid Pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
+        }
+
+        /* Scanline Overlay */
+        .scanline {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.3)
+            );
+            background-size: 100% 4px;
+        }
+
+        /* Định dạng nội dung Markdown */
+        .markdown-body p { margin-bottom: 0.75rem; }
+        .markdown-body pre { background: #090d16 !important; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b; margin: 0.75rem 0; overflow-x: auto; }
+        .markdown-body code { font-family: 'Fira Code', monospace; font-size: 0.875rem; }
+        .markdown-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .markdown-body ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .markdown-body blockquote { border-left: 3px solid #06b6d4; padding-left: 1rem; color: #9ca3af; margin: 0.75rem 0; }
+        .markdown-body table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+        .markdown-body th, .markdown-body td { border: 1px solid #1e293b; padding: 0.5rem; text-align: left; }
+        .markdown-body th { background-color: #0f172a; color: #06b6d4; }
+    </style>
+</head>
+<body class="bg-grid h-screen flex flex-col overflow-hidden select-none">
+    
+    <!-- Lớp hiệu ứng Scanline Cyberpunk -->
+    <div class="pointer-events-none fixed inset-0 scanline z-50 opacity-20"></div>
+
+    <!-- HEADER / Thanh điều hướng -->
+    <header class="bg-slate-950/80 backdrop-blur-md border-b border-cyan-500/30 px-4 py-3 flex items-center justify-between z-10 shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-950 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                <span class="font-orbitron font-extrabold text-cyan-400 text-xl tracking-tighter">NK</span>
+                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyan-400 rounded-full animate-ping"></span>
+                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyan-400 rounded-full"></span>
+            </div>
+            <div>
+                <h1 class="font-orbitron font-extrabold text-lg sm:text-xl text-white tracking-wider flex items-center gap-2">
+                    NAM KHANH BAKA
+                    <span class="text-xs font-mono font-normal px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">CORE v3.8</span>
+                </h1>
+                <p class="text-xs text-slate-400 font-mono tracking-widest uppercase flex items-center gap-2">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> NEURAL MATRIX ONLINE
+                </p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+            <button id="api-btn" onclick="openApiModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-mono text-xs transition duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 0121 9z"></path></svg>
+                <span class="hidden sm:inline">CẤU HÌNH API</span>
+            </button>
+            
+            <button onclick="clearHistory()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 border border-pink-500/40 font-mono text-xs transition duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                <span class="hidden sm:inline">XÓA CHAT</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CHAT CONTAINER -->
+    <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 max-w-5xl w-full mx-auto relative z-10 select-text">
+        <!-- Tin nhắn chào mặc định -->
+        <div class="flex gap-3 max-w-3xl">
+            <div class="w-8 h-8 rounded bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-orbitron font-bold text-xs shrink-0 shadow-lg shadow-cyan-500/20 border border-cyan-400/40">
+                NK
+            </div>
+            <div class="bg-slate-900/90 border border-cyan-500/30 p-4 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan shadow-xl backdrop-blur-sm">
+                <p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p>
+                <div class="markdown-body text-sm leading-relaxed">
+                    Xin chào! Tôi là **Nam Khanh Baka** - Trợ lý trí tuệ nhân tạo công nghệ cao. 
+                    <br><br>
+                    Tôi có thể giúp bạn giải đáp thắc mắc, viết mã nguồn (code), phân tích hình ảnh và tài liệu. Hãy tải ảnh/tệp lên hoặc nhập câu hỏi bên dưới để bắt đầu!
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- KHU VỰC HIỂN THỊ FILE ĐÍNH KÈM -->
+    <div id="attachment-preview" class="hidden max-w-5xl w-full mx-auto px-4 py-2 z-10">
+        <div class="bg-slate-900/90 border border-cyan-500/40 rounded-xl p-2.5 flex items-center justify-between gap-3 w-max max-w-md shadow-lg">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div id="file-icon-box" class="w-10 h-10 rounded bg-slate-800 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 overflow-hidden">
+                    <svg id="default-file-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+                    <img id="image-preview" class="w-full h-full object-cover hidden" src="" alt="preview">
+                </div>
+                <div class="overflow-hidden">
+                    <p id="file-name" class="text-xs font-mono font-semibold text-cyan-300 truncate">filename.png</p>
+                    <p id="file-size" class="text-[10px] font-mono text-slate-400">0 KB</p>
+                </div>
+            </div>
+            <button onclick="removeAttachment()" class="text-slate-400 hover:text-pink-400 transition p-1">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- KHU VỰC NHẬP DỮ LIỆU -->
+    <footer class="bg-slate-950/90 border-t border-cyan-500/30 p-3 sm:p-4 z-10 shrink-0">
+        <form id="chat-form" class="max-w-5xl mx-auto flex gap-2 items-end">
+            <input type="file" id="file-input" class="hidden" accept="image/*,text/*,application/pdf,.js,.py,.html,.css,.json">
+            <button type="button" onclick="document.getElementById('file-input').click()" class="p-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-500 text-slate-300 hover:text-cyan-400 transition duration-200 shrink-0" title="Tải Ảnh / File lên">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
+            </button>
+
+            <div class="flex-1 bg-slate-900/90 border border-slate-700 focus-within:border-cyan-500 rounded-xl transition duration-200 relative">
+                <textarea 
+                    id="user-input" 
+                    rows="1" 
+                    placeholder="Hỏi Nam Khanh Baka..." 
+                    class="w-full bg-transparent px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none resize-none max-h-32 font-sans"
+                    required
+                ></textarea>
+            </div>
+
+            <button 
+                type="submit" 
+                id="send-btn"
+                class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-orbitron font-extrabold text-sm transition duration-200 shadow-[0_0_15px_rgba(6,182,212,0.4)] flex items-center gap-2 shrink-0">
+                <span>GỬI</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </button>
+        </form>
+        <div class="max-w-5xl mx-auto mt-2 flex justify-between items-center text-[10px] font-mono text-slate-500 px-1">
+            <span>SYSTEM: READY</span>
+            <span>MODEL: GEMINI-3.8-FLASH</span>
+        </div>
+    </footer>
+
+    <!-- MODAL NHẬP HOẶC ĐỔI API KEY -->
+    <div id="api-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-slate-900 border border-cyan-500/50 rounded-2xl max-w-md w-full p-6 shadow-2xl neon-border-cyan">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-orbitron font-bold text-cyan-400 text-lg flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 0121 9z"></path></svg>
+                    QUẢN LÝ API KEY
+                </h3>
+                <button onclick="closeApiModal()" class="text-slate-400 hover:text-white">✕</button>
+            </div>
+            <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                Nhập Gemini API Key từ Google AI Studio. Mã Key sẽ được lưu vào trình duyệt của bạn.
+            </p>
+            <input 
+                type="password" 
+                id="api-key-input" 
+                placeholder="Nhập mã API Key mới tại đây..." 
+                class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-sm font-mono text-cyan-300 mb-4 focus:outline-none"
+            >
+            <div class="flex justify-end gap-2">
+                <button onclick="closeApiModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono">HỦY</button>
+                <button onclick="saveApiKey()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-orbitron font-bold text-xs">LƯU API KEY</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Tên mô hình chính thức cập nhật mới nhất từ Google AI Studio
+        const MODEL_NAME = "gemini-3.8-flash"; 
+        
+        // Key mặc định (được tự động lưu vào bộ nhớ trình duyệt)
+        const INITIAL_KEY = "AQ.Ab8RN6KmdmylGAiFwaTBsG2U_tJ9vNHw90C9a75RMg0dUSCI7w";
+        let apiKey = localStorage.getItem("NK_BAKA_API_KEY") || INITIAL_KEY;
+        if (!localStorage.getItem("NK_BAKA_API_KEY")) {
+            localStorage.setItem("NK_BAKA_API_KEY", INITIAL_KEY);
+        }
+
+        let currentAttachment = null;
+        let chatHistory = [];
+
+        const chatContainer = document.getElementById("chat-container");
+        const chatForm = document.getElementById("chat-form");
+        const userInput = document.getElementById("user-input");
+        const sendBtn = document.getElementById("send-btn");
+        const fileInput = document.getElementById("file-input");
+
+        // Tự co giãn ô nhập văn bản
+        userInput.addEventListener("input", function() {
+            this.style.height = "auto";
+            this.style.height = (this.scrollHeight) + "px";
+        });
+
+        userInput.addEventListener("keydown", function(e) {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                chatForm.dispatchEvent(new Event("submit"));
+            }
+        });
+
+        // Xử lý đọc File đính kèm
+        fileInput.addEventListener("change", async function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            if (file.type.startsWith("image/")) {
+                reader.readAsDataURL(file);
+                reader.onload = function() {
+                    const base64Data = reader.result.split(',')[1];
+                    currentAttachment = {
+                        inlineData: { mimeType: file.type, data: base64Data },
+                        name: file.name,
+                        size: (file.size / 1024).toFixed(1) + " KB",
+                        isImage: true,
+                        previewUrl: reader.result
+                    };
+                    showAttachmentPreview();
+                };
+            } else {
+                reader.readAsText(file);
+                reader.onload = function() {
+                    currentAttachment = {
+                        textData: `\n\n[TỆP ĐÍNH KÈM: ${file.name}]\n${reader.result}\n[KẾT THÚC TỆP]`,
+                        name: file.name,
+                        size: (file.size / 1024).toFixed(1) + " KB",
+                        isImage: false
+                    };
+                    showAttachmentPreview();
+                };
+            }
+        });
+
+        function showAttachmentPreview() {
+            if (!currentAttachment) return;
+            const previewBox = document.getElementById("attachment-preview");
+            document.getElementById("file-name").innerText = currentAttachment.name;
+            document.getElementById("file-size").innerText = currentAttachment.size;
+            const imgPreview = document.getElementById("image-preview");
+            const defaultIcon = document.getElementById("default-file-icon");
+
+            if (currentAttachment.isImage) {
+                imgPreview.src = currentAttachment.previewUrl;
+                imgPreview.classList.remove("hidden");
+                defaultIcon.classList.add("hidden");
+            } else {
+                imgPreview.classList.add("hidden");
+                defaultIcon.classList.remove("hidden");
+            }
+            previewBox.classList.remove("hidden");
+        }
+
+        function removeAttachment() {
+            currentAttachment = null;
+            fileInput.value = "";
+            document.getElementById("attachment-preview").classList.add("hidden");
+        }
+
+        // Xử lý sự kiện gửi tin nhắn
+        chatForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const textPrompt = userInput.value.trim();
+            if (!textPrompt && !currentAttachment) return;
+
+            let userDisplayHtml = textPrompt;
+            let apiParts = [];
+
+            if (textPrompt) apiParts.push({ text: textPrompt });
+
+            if (currentAttachment) {
+                if (currentAttachment.isImage) {
+                    apiParts.push({ inlineData: currentAttachment.inlineData });
+                    userDisplayHtml += `<br><img src="${currentAttachment.previewUrl}" class="max-w-xs rounded-lg mt-2 border border-cyan-500/30">`;
+                } else if (currentAttachment.textData) {
+                    apiParts.push({ text: currentAttachment.textData });
+                    userDisplayHtml += `<br><span class="inline-block mt-2 text-xs font-mono bg-cyan-950 text-cyan-300 px-2 py-1 rounded border border-cyan-500/30">📎 ${currentAttachment.name}</span>`;
+                }
+            }
+
+            appendMessage(userDisplayHtml, "user");
+            userInput.value = "";
+            userInput.style.height = "auto";
+            removeAttachment();
+
+            setInputState(false);
+            const loadingId = appendMessage("Đang suy nghĩ...", "ai", true);
+
+            try {
+                chatHistory.push({ role: "user", parts: apiParts });
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${apiKey}`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: chatHistory })
+                });
+
+                const data = await response.json();
+                removeMessage(loadingId);
+
+                if (data.candidates && data.candidates[0].content) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    appendMessage(aiText, "ai");
+                    chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+                } else if (data.error) {
+                    appendMessage(`⚠️ **LỖI API:** ${data.error.message}`, "ai");
+                    chatHistory.pop();
+                } else {
+                    appendMessage("⚠️ Không thể phản hồi.", "ai");
+                    chatHistory.pop();
+                }
+            } catch (err) {
+                removeMessage(loadingId);
+                appendMessage("⚠️ Lỗi kết nối máy chủ. Vui lòng kiểm tra lại Key hoặc kết nối mạng.", "ai");
+                chatHistory.pop();
+            } finally {
+                setInputState(true);
+            }
+        });
+
+        function appendMessage(content, sender, isLoading = false) {
+            const msgId = "msg-" + Date.now();
+            const isUser = sender === "user";
+
+            const msgDiv = document.createElement("div");
+            msgDiv.id = msgId;
+            msgDiv.className = `flex gap-3 max-w-3xl ${isUser ? "ml-auto flex-row-reverse" : ""}`;
+
+            const avatar = document.createElement("div");
+            avatar.className = `w-8 h-8 rounded ${isUser ? "bg-gradient-to-tr from-pink-600 to-purple-600 text-white font-orbitron font-bold text-xs border border-pink-400/40" : "bg-gradient-to-tr from-cyan-600 to-blue-600 text-white font-orbitron font-bold text-xs border border-cyan-400/40"} flex items-center justify-center shrink-0`;
+            avatar.innerText = isUser ? "YOU" : "NK";
+
+            const bubble = document.createElement("div");
+            bubble.className = `${isUser ? "bg-slate-900/90 border border-pink-500/40 rounded-2xl rounded-tr-none text-slate-100 neon-border-pink" : "bg-slate-900/90 border border-cyan-500/30 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan"} p-4 text-sm leading-relaxed backdrop-blur-sm`;
+
+            if (isLoading) {
+                bubble.innerHTML = `<p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p><p class="animate-pulse font-mono text-cyan-400 text-xs">${content}</p>`;
+            } else if (!isUser) {
+                bubble.innerHTML = `<p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p><div class="markdown-body">${marked.parse(content)}</div>`;
+                setTimeout(() => {
+                    bubble.querySelectorAll('pre code').forEach((block) => {
+                        hljs.highlightElement(block);
+                    });
+                }, 10);
+            } else {
+                bubble.innerHTML = `<p class="font-orbitron font-bold text-pink-400 text-xs mb-1 text-right">BẠN</p><div>${content}</div>`;
+            }
+
+            msgDiv.appendChild(avatar);
+            msgDiv.appendChild(bubble);
+            chatContainer.appendChild(msgDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            return msgId;
+        }
+
+        function removeMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function setInputState(enabled) {
+            userInput.disabled = !enabled;
+            sendBtn.disabled = !enabled;
+            if (enabled) userInput.focus();
+        }
+
+        function clearHistory() {
+            chatHistory = [];
+            chatContainer.innerHTML = `
+                <div class="flex gap-3 max-w-3xl">
+                    <div class="w-8 h-8 rounded bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-orbitron font-bold text-xs shrink-0 border border-cyan-400/40">NK</div>
+                    <div class="bg-slate-900/90 border border-cyan-500/30 p-4 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan">
+                        <p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p>
+                        <div class="markdown-body text-sm">Đã xóa lịch sử trò chuyện thành công!</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function openApiModal() {
+            document.getElementById("api-key-input").value = apiKey;
+            document.getElementById("api-modal").classList.remove("hidden");
+        }
+        function closeApiModal() {
+            document.getElementById("api-modal").classList.add("hidden");
+        }
+        function saveApiKey() {
+            const key = document.getElementById("api-key-input").value.trim();
+            if (key) {
+                apiKey = key;
+                localStorage.setItem("NK_BAKA_API_KEY", key);
+                closeApiModal();
+            }
+        }
+    </script>
+</body>
+</html>
