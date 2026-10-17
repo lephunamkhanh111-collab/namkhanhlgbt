@@ -3,105 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nam Khanh Baka - Neural Matrix AI Workspace</title>
+    <title>Ngun Biết Tuốt - AI Workspace 💕</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Orbitron & Rajdhani & Fira Code -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Quicksand & Nunito & Fira Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <!-- Marked.js cho Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- Highlight.js cho Code Syntax Highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
     <style>
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: #030509;
-            color: #d1d5db;
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fff0f5;
+            color: #6b4c57;
         }
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-nunito { font-family: 'Nunito', sans-serif; }
         .font-mono-code { font-family: 'Fira Code', monospace; }
         
-        /* Hiệu ứng Neon Cyberpunk Glow */
-        .neon-border-cyan {
-            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3), inset 0 0 10px rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.5);
-        }
+        /* Hiệu ứng Neon Hồng Dễ Thương */
         .neon-border-pink {
-            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3), inset 0 0 10px rgba(236, 72, 153, 0.1);
-            border: 1px solid rgba(236, 72, 153, 0.5);
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.6), inset 0 0 10px rgba(255, 192, 203, 0.2);
+            border: 2px solid #ffb6c1;
         }
         
-        /* Thanh cuộn Cyberpunk */
+        /* Thanh cuộn dễ thương */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #070a13; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; border: 1px solid #06b6d4; }
-        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+        ::-webkit-scrollbar-track { background: #fff0f5; }
+        ::-webkit-scrollbar-thumb { background: #ffb6c1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff69b4; }
 
-        /* Background Grid Pattern */
-        .bg-grid {
-            background-size: 40px 40px;
+        /* Background Họa Tiết Đáng Yêu */
+        .bg-grid-cute {
+            background-size: 30px 30px;
             background-image: 
-                linear-gradient(to right, rgba(6, 182, 212, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(6, 182, 212, 0.05) 1px, transparent 1px);
-        }
-
-        /* Scanline Overlay */
-        .scanline {
-            background: linear-gradient(
-                to bottom,
-                rgba(255,255,255,0),
-                rgba(255,255,255,0) 50%,
-                rgba(0, 0, 0, 0.3) 50%,
-                rgba(0, 0, 0, 0.3)
-            );
-            background-size: 100% 4px;
+                radial-gradient(circle, rgba(255, 182, 193, 0.3) 1.5px, transparent 1.5px);
         }
 
         /* Định dạng nội dung Markdown */
         .markdown-body p { margin-bottom: 0.75rem; }
-        .markdown-body pre { background: #090d16 !important; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b; margin: 0.75rem 0; overflow-x: auto; }
-        .markdown-body code { font-family: 'Fira Code', monospace; font-size: 0.875rem; }
+        .markdown-body pre { background: #fffaf0 !important; padding: 1rem; border-radius: 0.75rem; border: 2px dashed #ffb6c1; margin: 0.75rem 0; overflow-x: auto; }
+        .markdown-body code { font-family: 'Fira Code', monospace; font-size: 0.875rem; color: #d81b60; }
         .markdown-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
         .markdown-body ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.75rem; }
-        .markdown-body blockquote { border-left: 3px solid #06b6d4; padding-left: 1rem; color: #9ca3af; margin: 0.75rem 0; }
+        .markdown-body blockquote { border-left: 3px solid #ff69b4; padding-left: 1rem; color: #885b6e; margin: 0.75rem 0; background: #fff0f5; border-radius: 0 8px 8px 0; padding-top: 4px; padding-bottom: 4px; }
         .markdown-body table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
-        .markdown-body th, .markdown-body td { border: 1px solid #1e293b; padding: 0.5rem; text-align: left; }
-        .markdown-body th { background-color: #0f172a; color: #06b6d4; }
+        .markdown-body th, .markdown-body td { border: 1px solid #ffb6c1; padding: 0.5rem; text-align: left; }
+        .markdown-body th { background-color: #ffe4e1; color: #d81b60; }
     </style>
 </head>
-<body class="bg-grid h-screen flex flex-col overflow-hidden select-none">
+<body class="bg-grid-cute h-screen flex flex-col overflow-hidden select-none">
     
-    <!-- Lớp hiệu ứng Scanline Cyberpunk -->
-    <div class="pointer-events-none fixed inset-0 scanline z-50 opacity-20"></div>
+    <!-- MODAL NHẬP API KEY (BẮT BUỘC KHI VÀO) -->
+    <div id="api-modal" class="fixed inset-0 bg-pink-100/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
+        <div class="bg-white border-3 border-pink-300 rounded-3xl max-w-md w-full p-6 shadow-2xl neon-border-pink text-center">
+            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-3 text-3xl border-2 border-pink-300">
+                🎀
+            </div>
+            <h3 class="font-nunito font-extrabold text-pink-600 text-xl mb-2">
+                CHÀO MỪNG ĐẾN VỚI NGUN BIẾT TUỐT 💕
+            </h3>
+            <p class="text-xs text-slate-600 mb-5 leading-relaxed">
+                Cậu ơi, vui lòng nhập <b>Gemini API Key</b> của cậu vào đây để mở khóa không gian trò chuyện siêu đáng yêu này nha! ✨
+            </p>
+            <input 
+                type="password" 
+                id="api-key-input" 
+                placeholder="Nhập mã API Key ở đây nè..." 
+                class="w-full bg-pink-50 border-2 border-pink-200 focus:border-pink-400 rounded-2xl px-4 py-3 text-sm font-mono text-slate-700 mb-2 focus:outline-none text-center"
+            >
+            <div id="api-error" class="text-xs text-pink-500 font-semibold mb-3 hidden">Vui lòng nhập API Key hợp lệ nhé! 😿</div>
+            <button onclick="submitApiKey()" class="w-full py-3 rounded-2xl bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-nunito font-extrabold text-sm shadow-md transition duration-200 flex items-center justify-center gap-2">
+                <span>Bắt Đầu Khám Phá 🌸</span>
+            </button>
+        </div>
+    </div>
 
     <!-- HEADER / Thanh điều hướng -->
-    <header class="bg-slate-950/80 backdrop-blur-md border-b border-cyan-500/30 px-4 py-3 flex items-center justify-between z-10 shrink-0">
+    <header class="bg-white/80 backdrop-blur-md border-b-2 border-pink-200 px-4 py-3 flex items-center justify-between z-10 shrink-0 shadow-sm">
         <div class="flex items-center gap-3">
-            <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-cyan-950 border border-cyan-500/50 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
-                <span class="font-orbitron font-extrabold text-cyan-400 text-xl tracking-tighter">NK</span>
-                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyan-400 rounded-full animate-ping"></span>
-                <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-cyan-400 rounded-full"></span>
+            <div class="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-pink-100 border-2 border-pink-300 shadow-sm">
+                <span class="font-nunito font-black text-pink-600 text-xl tracking-tighter">NB</span>
+                <span class="absolute -top-1 -right-1 w-3 h-3 bg-pink-400 rounded-full animate-ping"></span>
+                <span class="absolute -top-1 -right-1 w-3 h-3 bg-pink-500 rounded-full"></span>
             </div>
             <div>
-                <h1 class="font-orbitron font-extrabold text-lg sm:text-xl text-white tracking-wider flex items-center gap-2">
-                    NAM KHANH BAKA
-                    <span class="text-xs font-mono font-normal px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">CORE v3.8</span>
+                <h1 class="font-nunito font-extrabold text-lg sm:text-xl text-pink-600 tracking-wider flex items-center gap-2">
+                    NGUN BIẾT TUỐT 
+                    <span class="text-xs font-mono font-normal px-2 py-0.5 rounded-full bg-pink-100 border border-pink-300 text-pink-500">v3.8 💖</span>
                 </h1>
-                <p class="text-xs text-slate-400 font-mono tracking-widest uppercase flex items-center gap-2">
-                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span> NEURAL MATRIX ONLINE
+                <p class="text-xs text-slate-500 font-semibold tracking-wide uppercase flex items-center gap-1.5">
+                    <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Trợ lý ảo siêu dễ thương online
                 </p>
             </div>
         </div>
 
-        <div class="flex items-center gap-2 sm:gap-3">
-            <button id="api-btn" onclick="openApiModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-mono text-xs transition duration-200">
+        <div class="flex items-center gap-2">
+            <button onclick="openApiModal()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-pink-50 hover:bg-pink-100 text-pink-600 border border-pink-300 font-nunito font-bold text-xs transition duration-200 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 0121 9z"></path></svg>
-                <span class="hidden sm:inline">CẤU HÌNH API</span>
+                <span class="hidden sm:inline">API KEY</span>
             </button>
             
-            <button onclick="clearHistory()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 border border-pink-500/40 font-mono text-xs transition duration-200">
+            <button onclick="clearHistory()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-500 border border-rose-200 font-nunito font-bold text-xs transition duration-200 shadow-sm">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
                 <span class="hidden sm:inline">XÓA CHAT</span>
             </button>
@@ -109,54 +114,54 @@
     </header>
 
     <!-- CHAT CONTAINER -->
-    <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 max-w-5xl w-full mx-auto relative z-10 select-text">
-        <!-- Tin nhắn chào mặc định theo yêu cầu -->
-        <div class="flex gap-3 max-w-3xl">
-            <div class="w-8 h-8 rounded bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-orbitron font-bold text-xs shrink-0 shadow-lg shadow-cyan-500/20 border border-cyan-400/40">
-                NK
+    <main id="chat-container" class="flex-1 overflow-y-auto p-4 space-y-4 max-w-4xl w-full mx-auto relative z-10 select-text">
+        <!-- Tin nhắn chào mặc định -->
+        <div class="flex gap-3 max-w-2xl">
+            <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-pink-400 to-rose-400 flex items-center justify-center text-white font-nunito font-bold text-xs shrink-0 shadow-md border border-pink-200">
+                NB
             </div>
-            <div class="bg-slate-900/90 border border-cyan-500/30 p-4 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan shadow-xl backdrop-blur-sm">
-                <p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p>
+            <div class="bg-white/90 border-2 border-pink-200 p-4 rounded-2xl rounded-tl-none text-slate-700 neon-border-pink shadow-md backdrop-blur-sm">
+                <p class="font-nunito font-extrabold text-pink-500 text-xs mb-1">NGUN BIẾT TUỐT 🌸</p>
                 <div class="markdown-body text-sm leading-relaxed">
-                    Trợ lý ảo do Nam Khánh siu dz tạo ra, tôi có thể giúp gì cho bạn?
+                    Hí lu cậu! Tớ là Ngun Biết Tuốt - trợ lý ảo siêu cấp đáng yêu được tạo ra để giúp đỡ cậu mọi lúc mọi nơi đây! Hôm nay tớ có thể giúp gì cho công chúa/hoàng tử của tớ nào? ✨💖
                 </div>
             </div>
         </div>
     </main>
 
     <!-- KHU VỰC HIỂN THỊ FILE ĐÍNH KÈM -->
-    <div id="attachment-preview" class="hidden max-w-5xl w-full mx-auto px-4 py-2 z-10">
-        <div class="bg-slate-900/90 border border-cyan-500/40 rounded-xl p-2.5 flex items-center justify-between gap-3 w-max max-w-md shadow-lg">
+    <div id="attachment-preview" class="hidden max-w-4xl w-full mx-auto px-4 py-2 z-10">
+        <div class="bg-white/95 border-2 border-pink-300 rounded-2xl p-2.5 flex items-center justify-between gap-3 w-max max-w-md shadow-md">
             <div class="flex items-center gap-3 overflow-hidden">
-                <div id="file-icon-box" class="w-10 h-10 rounded bg-slate-800 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 overflow-hidden">
+                <div id="file-icon-box" class="w-10 h-10 rounded-xl bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-500 shrink-0 overflow-hidden">
                     <svg id="default-file-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
                     <img id="image-preview" class="w-full h-full object-cover hidden" src="" alt="preview">
                 </div>
                 <div class="overflow-hidden">
-                    <p id="file-name" class="text-xs font-mono font-semibold text-cyan-300 truncate">filename.png</p>
+                    <p id="file-name" class="text-xs font-mono font-semibold text-pink-600 truncate">filename.png</p>
                     <p id="file-size" class="text-[10px] font-mono text-slate-400">0 KB</p>
                 </div>
             </div>
-            <button onclick="removeAttachment()" class="text-slate-400 hover:text-pink-400 transition p-1">
+            <button onclick="removeAttachment()" class="text-slate-400 hover:text-pink-500 transition p-1">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
 
     <!-- KHU VỰC NHẬP DỮ LIỆU -->
-    <footer class="bg-slate-950/90 border-t border-cyan-500/30 p-3 sm:p-4 z-10 shrink-0">
-        <form id="chat-form" class="max-w-5xl mx-auto flex gap-2 items-end">
+    <footer class="bg-white/90 border-t-2 border-pink-200 p-3 sm:p-4 z-10 shrink-0 shadow-sm">
+        <form id="chat-form" class="max-w-4xl mx-auto flex gap-2 items-end">
             <input type="file" id="file-input" class="hidden" accept="image/*,text/*,application/pdf,.js,.py,.html,.css,.json">
-            <button type="button" onclick="document.getElementById('file-input').click()" class="p-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-cyan-500 text-slate-300 hover:text-cyan-400 transition duration-200 shrink-0" title="Tải Ảnh / File lên">
+            <button type="button" onclick="document.getElementById('file-input').click()" class="p-3 rounded-2xl bg-pink-50 border-2 border-pink-200 hover:border-pink-400 text-pink-500 hover:text-pink-600 transition duration-200 shrink-0 shadow-sm" title="Tải Ảnh / Tệp lên">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path></svg>
             </button>
 
-            <div class="flex-1 bg-slate-900/90 border border-slate-700 focus-within:border-cyan-500 rounded-xl transition duration-200 relative">
+            <div class="flex-1 bg-white border-2 border-pink-200 focus-within:border-pink-400 rounded-2xl transition duration-200 relative shadow-sm">
                 <textarea 
                     id="user-input" 
                     rows="1" 
-                    placeholder="Hỏi Nam Khanh Baka..." 
-                    class="w-full bg-transparent px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none resize-none max-h-32 font-sans"
+                    placeholder="Nhắn gì đó cho Ngun Biết Tuốt đi nè... 💕" 
+                    class="w-full bg-transparent px-4 py-3 text-sm text-slate-700 placeholder-slate-400 focus:outline-none resize-none max-h-32 font-sans"
                     required
                 ></textarea>
             </div>
@@ -164,51 +169,44 @@
             <button 
                 type="submit" 
                 id="send-btn"
-                class="px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-orbitron font-extrabold text-sm transition duration-200 shadow-[0_0_15px_rgba(6,182,212,0.4)] flex items-center gap-2 shrink-0">
+                class="px-5 py-3 rounded-2xl bg-gradient-to-r from-pink-400 to-rose-400 hover:from-pink-500 hover:to-rose-500 text-white font-nunito font-extrabold text-sm transition duration-200 shadow-md flex items-center gap-2 shrink-0">
                 <span>GỬI</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </button>
         </form>
     </footer>
 
-    <!-- MODAL NHẬP HOẶC ĐỔI API KEY -->
-    <div id="api-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-slate-900 border border-cyan-500/50 rounded-2xl max-w-md w-full p-6 shadow-2xl neon-border-cyan">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="font-orbitron font-bold text-cyan-400 text-lg flex items-center gap-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 0121 9z"></path></svg>
-                    QUẢN LÝ API KEY
-                </h3>
-                <button onclick="closeApiModal()" class="text-slate-400 hover:text-white">✕</button>
-            </div>
-            <p class="text-xs text-slate-300 mb-4 leading-relaxed">
-                Nhập Gemini API Key từ Google AI Studio. Mã Key sẽ được lưu vào trình duyệt của bạn.
-            </p>
-            <input 
-                type="password" 
-                id="api-key-input" 
-                placeholder="Nhập mã API Key mới tại đây..." 
-                class="w-full bg-slate-950 border border-slate-700 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-sm font-mono text-cyan-300 mb-4 focus:outline-none"
-            >
-            <div class="flex justify-end gap-2">
-                <button onclick="closeApiModal()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono">HỦY</button>
-                <button onclick="saveApiKey()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-orbitron font-bold text-xs">LƯU API KEY</button>
-            </div>
-        </div>
-    </div>
-
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        // Sử dụng model gemini-3.8-flash theo yêu cầu
         const MODEL_NAME = "gemini-3.8-flash"; 
-        
-        // Tích hợp sẵn API Key mới của bạn và tự động ghi đè bộ nhớ cũ
-        const INITIAL_KEY = "AQ.Ab8RN6IyL2kD02A9ZGEjEVZ7sJQHgvgzV8vxYDLCFsWpWCPGOw";
-        localStorage.setItem("NK_BAKA_API_KEY", INITIAL_KEY);
-        let apiKey = INITIAL_KEY;
-
+        let apiKey = localStorage.getItem("NGUN_BIET_TUOT_API_KEY") || "";
         let currentAttachment = null;
         let chatHistory = [];
+
+        // Kiểm tra ngay khi load trang
+        window.addEventListener("DOMContentLoaded", () => {
+            if (apiKey) {
+                document.getElementById("api-modal").classList.add("hidden");
+            }
+        });
+
+        function submitApiKey() {
+            const val = document.getElementById("api-key-input").value.trim();
+            const err = document.getElementById("api-error");
+            if (!val) {
+                err.classList.remove("hidden");
+                return;
+            }
+            apiKey = val;
+            localStorage.setItem("NGUN_BIET_TUOT_API_KEY", val);
+            document.getElementById("api-modal").classList.add("hidden");
+            err.classList.add("hidden");
+        }
+
+        function openApiModal() {
+            document.getElementById("api-key-input").value = apiKey;
+            document.getElementById("api-modal").classList.remove("hidden");
+        }
 
         const chatContainer = document.getElementById("chat-container");
         const chatForm = document.getElementById("chat-form");
@@ -287,6 +285,11 @@
 
         chatForm.addEventListener("submit", async (e) => {
             e.preventDefault();
+            if (!apiKey) {
+                openApiModal();
+                return;
+            }
+
             const textPrompt = userInput.value.trim();
             if (!textPrompt && !currentAttachment) return;
 
@@ -298,10 +301,10 @@
             if (currentAttachment) {
                 if (currentAttachment.isImage) {
                     apiParts.push({ inlineData: currentAttachment.inlineData });
-                    userDisplayHtml += `<br><img src="${currentAttachment.previewUrl}" class="max-w-xs rounded-lg mt-2 border border-cyan-500/30">`;
+                    userDisplayHtml += `<br><img src="${currentAttachment.previewUrl}" class="max-w-xs rounded-xl mt-2 border-2 border-pink-200">`;
                 } else if (currentAttachment.textData) {
                     apiParts.push({ text: currentAttachment.textData });
-                    userDisplayHtml += `<br><span class="inline-block mt-2 text-xs font-mono bg-cyan-950 text-cyan-300 px-2 py-1 rounded border border-cyan-500/30">📎 ${currentAttachment.name}</span>`;
+                    userDisplayHtml += `<br><span class="inline-block mt-2 text-xs font-mono bg-pink-100 text-pink-600 px-2.5 py-1 rounded-lg border border-pink-200">📎 ${currentAttachment.name}</span>`;
                 }
             }
 
@@ -311,7 +314,7 @@
             removeAttachment();
 
             setInputState(false);
-            const loadingId = appendMessage("Đang suy nghĩ...", "ai", true);
+            const loadingId = appendMessage("Đang suy nghĩ... ✨", "ai", true);
 
             try {
                 chatHistory.push({ role: "user", parts: apiParts });
@@ -333,12 +336,12 @@
                     appendMessage(`⚠️ **LỖI API:** ${data.error.message}`, "ai");
                     chatHistory.pop();
                 } else {
-                    appendMessage("⚠️ Không thể phản hồi.", "ai");
+                    appendMessage("⚠️ Ôi không, tớ không phản hồi được rồi, thử lại nha!", "ai");
                     chatHistory.pop();
                 }
             } catch (err) {
                 removeMessage(loadingId);
-                appendMessage("⚠️ Lỗi kết nối máy chủ. Vui lòng kiểm tra lại Key hoặc kết nối mạng.", "ai");
+                appendMessage("⚠️ Lỗi kết nối mạng hoặc API Key không hợp lệ rồi cậu ơi!", "ai");
                 chatHistory.pop();
             } finally {
                 setInputState(true);
@@ -351,26 +354,26 @@
 
             const msgDiv = document.createElement("div");
             msgDiv.id = msgId;
-            msgDiv.className = `flex gap-3 max-w-3xl ${isUser ? "ml-auto flex-row-reverse" : ""}`;
+            msgDiv.className = `flex gap-3 max-w-2xl ${isUser ? "ml-auto flex-row-reverse" : ""}`;
 
             const avatar = document.createElement("div");
-            avatar.className = `w-8 h-8 rounded ${isUser ? "bg-gradient-to-tr from-pink-600 to-purple-600 text-white font-orbitron font-bold text-xs border border-pink-400/40" : "bg-gradient-to-tr from-cyan-600 to-blue-600 text-white font-orbitron font-bold text-xs border border-cyan-400/40"} flex items-center justify-center shrink-0`;
-            avatar.innerText = isUser ? "YOU" : "NK";
+            avatar.className = `w-9 h-9 rounded-2xl ${isUser ? "bg-gradient-to-tr from-rose-400 to-pink-500 text-white font-nunito font-bold text-xs border border-rose-200" : "bg-gradient-to-tr from-pink-400 to-rose-400 text-white font-nunito font-bold text-xs border border-pink-200"} flex items-center justify-center shrink-0 shadow-sm`;
+            avatar.innerText = isUser ? "YOU" : "NB";
 
             const bubble = document.createElement("div");
-            bubble.className = `${isUser ? "bg-slate-900/90 border border-pink-500/40 rounded-2xl rounded-tr-none text-slate-100 neon-border-pink" : "bg-slate-900/90 border border-cyan-500/30 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan"} p-4 text-sm leading-relaxed backdrop-blur-sm`;
+            bubble.className = `${isUser ? "bg-white/95 border-2 border-rose-200 rounded-2xl rounded-tr-none text-slate-700 shadow-sm" : "bg-white/95 border-2 border-pink-200 rounded-2xl rounded-tl-none text-slate-700 neon-border-pink shadow-md"} p-4 text-sm leading-relaxed backdrop-blur-sm`;
 
             if (isLoading) {
-                bubble.innerHTML = `<p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p><p class="animate-pulse font-mono text-cyan-400 text-xs">${content}</p>`;
+                bubble.innerHTML = `<p class="font-nunito font-extrabold text-pink-500 text-xs mb-1">NGUN BIẾT TUỐT 🌸</p><p class="animate-pulse font-mono text-pink-400 text-xs">${content}</p>`;
             } else if (!isUser) {
-                bubble.innerHTML = `<p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p><div class="markdown-body">${marked.parse(content)}</div>`;
+                bubble.innerHTML = `<p class="font-nunito font-extrabold text-pink-500 text-xs mb-1">NGUN BIẾT TUỐT 🌸</p><div class="markdown-body">${marked.parse(content)}</div>`;
                 setTimeout(() => {
                     bubble.querySelectorAll('pre code').forEach((block) => {
                         hljs.highlightElement(block);
                     });
                 }, 10);
             } else {
-                bubble.innerHTML = `<p class="font-orbitron font-bold text-pink-400 text-xs mb-1 text-right">BẠN</p><div>${content}</div>`;
+                bubble.innerHTML = `<p class="font-nunito font-extrabold text-rose-500 text-xs mb-1 text-right">BẠN 💖</p><div>${content}</div>`;
             }
 
             msgDiv.appendChild(avatar);
@@ -395,30 +398,14 @@
         function clearHistory() {
             chatHistory = [];
             chatContainer.innerHTML = `
-                <div class="flex gap-3 max-w-3xl">
-                    <div class="w-8 h-8 rounded bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-white font-orbitron font-bold text-xs shrink-0 border border-cyan-400/40">NK</div>
-                    <div class="bg-slate-900/90 border border-cyan-500/30 p-4 rounded-2xl rounded-tl-none text-slate-200 neon-border-cyan">
-                        <p class="font-orbitron font-bold text-cyan-400 text-xs mb-1">NAM KHANH BAKA</p>
-                        <div class="markdown-body text-sm">Đã xóa lịch sử trò chuyện thành công!</div>
+                <div class="flex gap-3 max-w-2xl">
+                    <div class="w-9 h-9 rounded-2xl bg-gradient-to-tr from-pink-400 to-rose-400 flex items-center justify-center text-white font-nunito font-bold text-xs shrink-0 border border-pink-200 shadow-sm">NB</div>
+                    <div class="bg-white/90 border-2 border-pink-200 p-4 rounded-2xl rounded-tl-none text-slate-700 neon-border-pink shadow-md">
+                        <p class="font-nunito font-extrabold text-pink-500 text-xs mb-1">NGUN BIẾT TUỐT 🌸</p>
+                        <div class="markdown-body text-sm">Đã xóa sạch lịch sử trò chuyện rồi nha! Chúng mình bắt đầu lại từ đầu nào ✨💖</div>
                     </div>
                 </div>
             `;
-        }
-
-        function openApiModal() {
-            document.getElementById("api-key-input").value = apiKey;
-            document.getElementById("api-modal").classList.remove("hidden");
-        }
-        function closeApiModal() {
-            document.getElementById("api-modal").classList.add("hidden");
-        }
-        function saveApiKey() {
-            const key = document.getElementById("api-key-input").value.trim();
-            if (key) {
-                apiKey = key;
-                localStorage.setItem("NK_BAKA_API_KEY", key);
-                closeApiModal();
-            }
         }
     </script>
 </body>
